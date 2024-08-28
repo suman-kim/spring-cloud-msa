@@ -14,21 +14,56 @@ spring:
     name: apigateway-service
   cloud:
       gateway:
+        default-filters:
+          - name: GlobalFilter
+            args:
+                baseMessage: Spring Cloud Gateway Global Filter
+                preLogger: true
+                postLogger: true
         routes:
-          - id: first-service
-            uri: http://localhost:8081
+          - id: user-service
+            # 유레카에 등록된 서비스 이름
+            uri: lb://USER-SERVICE
             predicates:
-              - Path=/first-service/**
-            # request 와 response 에 header 를 추가하는 필터
+              - Path=/user-service/**
             filters:
-#              - AddRequestHeader=first-request, first-request-header2
-#              - AddResponseHeader=first-response, first-response-header2
-              - CustomFilter
-          - id: second-service
-            uri: http://localhost:8082
+              - AddRequestHeader=user-request, user-request-header2
+              - AddResponseHeader=user-response, user-response-header2
+          - id: catalog-service
+            # 유레카에 등록된 서비스 이름
+            uri: lb://CATALOG-SERVICE
             predicates:
-              - Path=/second-service/**
+              - Path=/catalog-service/**
             filters:
-#                - AddRequestHeader=second-request, second-request-header2
-#                - AddResponseHeader=second-response, second-response-header2
-              - CustomFilter
+              - AddRequestHeader=user-request, user-request-header2
+              - AddResponseHeader=user-response, user-response-header2
+          - id: order-service
+            # 유레카에 등록된 서비스 이름
+            uri: lb://ORDER-SERVICE
+            predicates:
+              - Path=/order-service/**
+            filters:
+              - AddRequestHeader=user-request, user-request-header2
+              - AddResponseHeader=user-response, user-response-header2
+#          - id: first-service
+#            uri: lb://FIRST-SERVICE
+#            predicates:
+#              - Path=/first-service/**
+#            # request 와 response 에 header 를 추가하는 필터
+#            filters:
+##              - AddRequestHeader=first-request, first-request-header2
+##              - AddResponseHeader=first-response, first-response-header2
+#              - CustomFilter
+#          - id: second-service
+#            uri: lb://SECOND-SERVICE
+#            predicates:
+#              - Path=/second-service/**
+#            filters:
+##                - AddRequestHeader=second-request, second-request-header2
+##                - AddResponseHeader=second-response, second-response-header2
+#              - name: CustomFilter
+#              - name: LoggingFilter
+#                args:
+#                  baseMessage: Hi, there.
+#                  preLogger: true
+#                  postLogger: true

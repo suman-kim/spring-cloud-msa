@@ -1,0 +1,11 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-service
+  cloud:
+    config:
+      server:
+        git:
+          uri: /Volumes/T7/git-local-repo
