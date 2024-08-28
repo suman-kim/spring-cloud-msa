@@ -8,4 +8,6 @@ spring:
     config:
       server:
         git:
-          uri: /Volumes/T7/git-local-repo
+          uri: https://github.com/suman-kim/spring-cloud-msa.git
+          search-paths: git-local-repo/**
+          default-label: main
