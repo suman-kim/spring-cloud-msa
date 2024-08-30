@@ -11,4 +11,3 @@ spring:
           uri: https://github.com/suman-kim/spring-cloud-msa
           search-paths: yml-file/**
           default-label: main
-          skipSslValidation: true
