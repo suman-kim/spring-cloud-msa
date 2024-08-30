@@ -2,7 +2,6 @@ package org.example.userservice;
 
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +20,11 @@ public class UserController {
 
     @GetMapping("/health-check")
     public String status() {
-        return String.format("It's Working in User Service on PORT %s", env.getProperty("local.server.port"));
+        System.out.println("Working on port: " + env.getProperty("local.server.port"));
+        System.out.println("Working on token secret: " + env.getProperty("token.secret"));
+        System.out.println("Working on expiration time: " + env.getProperty("token.xpiration_time"));
+        System.out.println("Working on gateway ip: " + env.getProperty("gateway.ip"));
+        return String.format("It's Working, gateway.ip=%s", env.getProperty("gateway.ip"));
     }
 
 
