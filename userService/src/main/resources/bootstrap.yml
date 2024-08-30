@@ -5,4 +5,4 @@ spring:
       uri: http://localhost:8888  # Config Server의 주소
       name: ecommerce-service  # Config Server에서 가져올 설정 파일의 이름
   profiles:
-    active: local
+    active: local  # 활성화할 프로파일
