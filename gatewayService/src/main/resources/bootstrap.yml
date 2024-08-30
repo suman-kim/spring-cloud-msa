@@ -1,0 +1,4 @@
+spring:
+  cloud:
+    uri: http://localhost:8888  # Config Server의 주소
+    name: ecommerce-service-local  # Config Server에서 가져올 설정 파일의 이름

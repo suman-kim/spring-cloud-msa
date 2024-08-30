@@ -1,6 +1,6 @@
 token:
     xpiration_time: 86400000
-    secret: local_token
+    secret: prod_token
 
 
 

@@ -26,25 +26,32 @@ spring:
             uri: lb://USER-SERVICE
             predicates:
               - Path=/user-service/**
+              - Method=GET,POST
             filters:
-              - AddRequestHeader=user-request, user-request-header2
-              - AddResponseHeader=user-response, user-response-header2
+              # request 할때 "/user-service"를 제거하고 userService의 서비스 애플리케이션으로 요청을 보냄
+              - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+          - id: user-service
+            uri: lb://USER-SERVICE
+            predicates:
+              - Path=/user-service/actuator/**
+              - Method=GET,POST
+            filters:
+              - RemoveRequestHeader=Cookie
+              - RewritePath=/user-service/(?<segment>.*), /$\{segment}
           - id: catalog-service
             # 유레카에 등록된 서비스 이름
             uri: lb://CATALOG-SERVICE
             predicates:
               - Path=/catalog-service/**
             filters:
-              - AddRequestHeader=user-request, user-request-header2
-              - AddResponseHeader=user-response, user-response-header2
+              - RemoveRequestHeader=Cookie
           - id: order-service
             # 유레카에 등록된 서비스 이름
             uri: lb://ORDER-SERVICE
             predicates:
               - Path=/order-service/**
             filters:
-              - AddRequestHeader=user-request, user-request-header2
-              - AddResponseHeader=user-response, user-response-header2
+              - RemoveRequestHeader=Cookie
 #          - id: first-service
 #            uri: lb://FIRST-SERVICE
 #            predicates:
@@ -67,3 +74,10 @@ spring:
 #                  baseMessage: Hi, there.
 #                  preLogger: true
 #                  postLogger: true
+
+
+management:
+  endpoints:
+    web:
+        exposure:
+            include: refresh, health, beans, httptrace

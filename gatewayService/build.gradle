@@ -31,6 +31,15 @@ dependencies {
     //lombok
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+
+    implementation 'org.springframework.boot:spring-boot-starter'
+    // Spring Cloud Config Client
+    implementation 'org.springframework.cloud:spring-cloud-starter-config'
+    // spring boot actuator
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    //spring cloud bootstrap
+    implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
+
 }
 
 dependencyManagement {

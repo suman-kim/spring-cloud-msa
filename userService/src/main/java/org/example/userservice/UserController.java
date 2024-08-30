@@ -11,7 +11,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/user-service")
+@RequestMapping("/")
 public class UserController {
 
     Environment env;
@@ -20,11 +20,8 @@ public class UserController {
 
     @GetMapping("/health-check")
     public String status() {
-        System.out.println("Working on port: " + env.getProperty("local.server.port"));
-        System.out.println("Working on token secret: " + env.getProperty("token.secret"));
-        System.out.println("Working on expiration time: " + env.getProperty("token.xpiration_time"));
-        System.out.println("Working on gateway ip: " + env.getProperty("gateway.ip"));
-        return String.format("It's Working, gateway.ip=%s", env.getProperty("gateway.ip"));
+
+        return String.format("It's Working, service.name=%s", env.getProperty("service.name"));
     }
 
 
