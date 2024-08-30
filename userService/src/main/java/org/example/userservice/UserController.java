@@ -21,6 +21,8 @@ public class UserController {
     @GetMapping("/health-check")
     public String status() {
 
+        System.out.println("It's Working, service.name=" + env.getProperty("service.name"));
+        System.out.println("It's Working, token.secret=" + env.getProperty("token.secret"));
         return String.format("It's Working, service.name=%s", env.getProperty("service.name"));
     }
 
