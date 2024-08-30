@@ -36,6 +36,7 @@ public class WebSecurity {
                 .httpBasic(withDefaults())
                 .authorizeHttpRequests((authorize) -> authorize
                         //인증되지 않은 사용자가 접근할 수 있는 경로를 추가
+                        .requestMatchers("/actuator/**").permitAll()
                         .requestMatchers("/user-service/**").permitAll()
                         //나머지 요청은 인증이 필요하다.
                         .anyRequest().authenticated());

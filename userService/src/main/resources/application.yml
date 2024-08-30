@@ -39,3 +39,9 @@ greeting:
   message: Hello from user-service
 
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans
+

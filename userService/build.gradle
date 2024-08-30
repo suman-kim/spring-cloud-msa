@@ -51,6 +51,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     // Spring Cloud Config Client
     implementation 'org.springframework.cloud:spring-cloud-starter-config'
+
+    // spring boot actuator
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
 }
 
 dependencyManagement {
